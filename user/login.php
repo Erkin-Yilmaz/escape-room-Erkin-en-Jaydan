@@ -1,11 +1,7 @@
 <?php
-// Op deze pagina logt een gebruiker of admin in.
-// Na het inloggen kom je op de pagina waar je een team kunt aanmaken.
-
 session_start();
 require_once '../dbcon.php';
 
-// --- LOGIN CHECK: Redirect if already logged in ---
 if (isset($_SESSION['userId'])) {
     if ($_SESSION['userRole'] === 'admin') {
         header('Location: ../admin/dashboard.php');
@@ -14,7 +10,6 @@ if (isset($_SESSION['userId'])) {
     }
     exit;
 }
-// --- END LOGIN CHECK ---
 
 $email = $_POST['email'] ?? null;
 $password = $_POST['password'] ?? null;
@@ -29,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $email && $password) {
         $_SESSION['userId'] = $user['id'];
         $_SESSION['userName'] = $user['name'];
         $_SESSION['userRole'] = $user['role'];
-        
+
         if ($user['role'] === 'admin') {
             header('Location: ../admin/dashboard.php');
         } else {
@@ -37,14 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $email && $password) {
         }
         exit;
     } else {
-        echo "Invalid credentials.";
-        // --- REGISTER BUTTON: Show button to go to register page ---
-        echo '<br><a href="register.php"><button>Registreren</button></a>';
-        // --- END REGISTER BUTTON ---
+        $error = "Invalid credentials.";
     }
-} else {
-    // --- LOGIN FORM: Show login form if not submitted ---
-    ?>
+}
+?>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Inloggen</title>
+</head>
+<body>
+    <?php if (!empty($error)): ?>
+        <p style="color:red;"><?= $error ?></p>
+    <?php endif; ?>
     <form method="post">
         <label for="email">E-mail:</label>
         <input type="email" name="email" required><br>
@@ -52,11 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $email && $password) {
         <input type="password" name="password" required><br>
         <button type="submit">Inloggen</button>
     </form>
-    <!-- REGISTER BUTTON: Show button to go to register page -->
     <a href="register.php"><button>Registreren</button></a>
-    <!-- END REGISTER BUTTON -->
-    <?php
-    // --- END LOGIN FORM ---
-    
-} 
-?>
+</body>
+</html>
