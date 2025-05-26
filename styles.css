@@ -1,8 +1,9 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
+  background-color: black;
+  color: #05f81e;
 }
-
 a {
   color: black;
   text-decoration: none;
@@ -18,7 +19,7 @@ a {
 .box {
   width: 100px;
   height: 100px;
-  background-color: #3498db;
+  background-color: #05f81e;
   color: white;
   display: flex;
   align-items: center;
@@ -29,7 +30,7 @@ a {
 }
 
 .box:hover {
-  background-color: #2980b9;
+  background-color: #1e6708;
 }
 
 .overlay {
@@ -47,7 +48,7 @@ a {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white;
+  background: rgb(0, 62, 9);
   padding: 20px;
   border-radius: 10px;
   display: none;
