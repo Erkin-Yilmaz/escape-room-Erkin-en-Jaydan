@@ -16,6 +16,9 @@
     <h1>hallo
         
     </h1>
+     
+        <a href="../index.php">start kamer 1</a>
+
 </body>
 
 </html>
