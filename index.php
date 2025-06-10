@@ -30,7 +30,7 @@ if (!isset($_SESSION['userId'])) {
 
   <!-- De button hieronder is alleen voor testdoeleinden bij het opstarten van het project.
      Deze pagina is bedoeld voor de uitleg van jullie escape room. -->
-  <button><a href="room_1.php">start kamer 1</a></button>
+  <button><a href="room_1.php">start escape room</a></button>
 
 </body>
 

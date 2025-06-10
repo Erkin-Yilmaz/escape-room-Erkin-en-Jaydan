@@ -24,7 +24,7 @@
 
   <!-- De button hieronder is alleen voor testdoeleinden bij het opstarten van het project.
      Deze pagina is bedoeld voor de uitleg van jullie escape room. -->
-  <button><a href="room_1.php">probeer opniew</a></button>
+  <button><a href="../index.php">probeer opniew</a></button>
 
 </body>
 
