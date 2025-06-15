@@ -1,5 +1,5 @@
 let answeredCorrectly = new Set();
-let totalQuestions = 3; 
+
 // Deze functie opent de modal en toont de vraag
 function openModal(index) {
   // Zoek het element met de class 'box' en het bijbehorende data-index
@@ -14,6 +14,8 @@ function openModal(index) {
 
   // Zet het correcte antwoord in de modal, zodat we het later kunnen vergelijken
   document.getElementById('modal').dataset.answer = correctAnswer;
+
+   document.getElementById('modal').dataset.index = index;
 
   // Maak het antwoordveld leeg
   document.getElementById('answer').value = '';
@@ -47,7 +49,8 @@ function checkAnswer() {
     feedback.style.color = 'green';
 
     // Mark this question as answered
-    let index = document.querySelector('.box[data-question="' + document.getElementById('question').innerText + '"]').dataset.index;
+   let index = document.getElementById('modal').dataset.index;
+
     answeredCorrectly.add(index);
 
     setTimeout(() => {
@@ -69,4 +72,29 @@ function checkAnswer() {
     feedback.innerText = 'Fout, probeer opnieuw!';
     feedback.style.color = 'red';
   }
+}
+
+function startCountdown(durationInMinutes, onTimeUpCallback) {
+  let time = durationInMinutes * 60;
+  let countdown = setInterval(function () {
+    let seconds = time % 60;
+    let minutes = Math.floor(time / 60);
+
+    if (seconds < 10) seconds = "0" + seconds;
+    if (minutes < 10) minutes = "0" + minutes;
+
+    const timeDisplay = document.getElementById("time");
+    if (timeDisplay) {
+      timeDisplay.innerHTML = minutes + ":" + seconds;
+    }
+
+    time--;
+
+    if (time < 0) {
+      clearInterval(countdown);
+      if (typeof onTimeUpCallback === "function") {
+        onTimeUpCallback(); // Bijvoorbeeld redirect naar verliespagina
+      }
+    }
+  }, 1000);
 }
