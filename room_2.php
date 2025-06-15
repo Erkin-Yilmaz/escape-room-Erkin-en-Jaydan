@@ -20,7 +20,23 @@ try {
 </head>
 
 <body>
+  <h1>room 2</h1>
+  <script>
+  let totalQuestions = <?php echo count($questions); ?>;
+</script>
 
+<script src="app.js"></script><div class="timer">
+  <div class="time">
+
+    <strong>Time left: <span id="time">Loading...</span></strong>
+  </div>
+</div>
+
+<script>
+  startCountdown(5, function () {
+    window.location.href = "WinVerlies/lose.php";
+  });
+</script>
   <div class="container">
     <?php foreach ($questions as $index => $question) : ?>
     <div class="box box<?php echo $index + 1; ?>" onclick="openModal(<?php echo $index; ?>)"
