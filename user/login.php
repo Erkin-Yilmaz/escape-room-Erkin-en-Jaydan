@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $email && $password) {
 <head>
     <meta charset="UTF-8">
     <title>Inloggen</title>
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <?php if (!empty($error)): ?>

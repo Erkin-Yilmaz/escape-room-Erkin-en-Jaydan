@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } 
 ?>
-
+<link rel="stylesheet" href="../styles.css">
 <!-- REGISTRATION FORM: Show registration form if not submitted -->
 <form method="post">
     <label for="name">Naam:</label>
