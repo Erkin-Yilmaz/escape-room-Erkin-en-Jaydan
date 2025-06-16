@@ -1,7 +1,25 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #000000;
+  background-color: black;
+  color: #05f81e;
+
+  /* Matrix-style background animation */
+  background: url('../img/Scroll_Image.png') repeat-y;
+  background-size: 100% 2000px;
+
+  background-attachment: scroll;
+  animation: matrixScroll 60s linear infinite;
+
+  /* Optimize animation smoothness */
+  will-change: background-position;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes matrixScroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 2000px; }
 }
 #loser{
   color: #f80505;
