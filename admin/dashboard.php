@@ -18,17 +18,27 @@
         
     </h1>
 
-     <a href="add_question.php">Vraag toevoegen</a> <br>
-    <a href="../index.php">start kamer 1</a> <br>
-    <a href="show_all_questions.php">Alle vragen</a> <br>
-    <a href="show_all_teams.php">Alle gebruikers</a>
+    <button><a href="add_question.php">Vraag toevoegen</a></button> <br> <br>
+    <button><a href="../index.php">start kamer 1</a></button> <br> <br>
+    <button><a href="show_all_questions.php">Alle vragen</a></button> <br> <br>
+    <button><a href="show_all_teams.php">Alle gebruikers</a></button>
 
 </body>
 
 <style>
     
     a{
+        color: black;
+    }
+
+    button {
+        background-color: #05f81e;
         color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        border-radius: 10px;
     }
 </style>
 

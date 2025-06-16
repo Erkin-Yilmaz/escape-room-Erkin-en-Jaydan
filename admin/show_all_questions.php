@@ -79,13 +79,25 @@ $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endif; ?>
             </tr>
         <?php endforeach; ?>
-    </table>
+    </table> 
+    <br>
+<button type="button" onclick="window.history.back();">Ga terug</button>
+
 </body>
 
 <style>
      a {
         color: #05f81e;
         text-decoration: none;
+     }
+
+     button {
+        background-color: #05f81e;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 10px;
      }
 </style>
 </html>

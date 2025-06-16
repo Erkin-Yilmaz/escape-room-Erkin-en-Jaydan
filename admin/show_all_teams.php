@@ -82,11 +82,25 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endforeach; ?>
     </table>
 
+
+    <br>
+
+    <a href="dashboard.php"><button>Terug naar dashboard</button></a>
+
     <style>
      a {
         color: #05f81e;
         text-decoration: none;
      }
+
+        button {
+            background-color: #05f81e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 10px; 
+        }
     </style>
 </body>
 </html>

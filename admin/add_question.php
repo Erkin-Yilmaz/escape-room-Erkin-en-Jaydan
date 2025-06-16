@@ -48,5 +48,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit">Toevoegen</button>
     </form>
+    <br>
+    <a href="show_all_questions.php"><button>Bekijk alle vragen</button></a>
+    <a href="dashboard.php"><button>Terug naar dashboard</button></a>
+
+<style>
+    button {
+        background-color: #05f81e;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 10px;
+     }
+
+</style>
+
+
 </body>
 </html>
