@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $role = 'player'; // always enforced
 
         $sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
-        $stmt = $db_connection->prepare($sql);
+        $stmt = $dbConnection->prepare($sql);
         $stmt->execute([$name, $email, $hashedPassword, $role]);
 
         header('Location: login.php');

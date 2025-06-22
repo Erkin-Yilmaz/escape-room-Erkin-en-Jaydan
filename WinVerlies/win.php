@@ -1,10 +1,12 @@
 <?php
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 if (isset($_GET['room2_time'])) {
     $_SESSION['room2_time'] = intval($_GET['room2_time']);
     require_once '../dbcon.php';
     if (isset($_SESSION['userId'])) {
-        $stmt = $db_connection->prepare("UPDATE users SET room2_time = ? WHERE id = ?");
+        $stmt = $dbConnection->prepare("UPDATE users SET room2_time = ? WHERE id = ?");
         $stmt->execute([$_SESSION['room2_time'], $_SESSION['userId']]);
     }
 }
@@ -26,7 +28,6 @@ if (isset($_GET['room2_time'])) {
   <h1>you won!</h1>
   <p>Je computer doet het weer goed</p>
 
-<?php session_start(); ?>
 <p>Je hebt <?php echo isset($_SESSION['room1_time']) ? floor($_SESSION['room1_time']/60) . " min en " . ($_SESSION['room1_time']%60) . " sec" : "- min en - sec"; ?> gedaan over kamer 1</p>
 <p>Je hebt <?php echo isset($_SESSION['room2_time']) ? floor($_SESSION['room2_time']/60) . " min en " . ($_SESSION['room2_time']%60) . " sec" : "- min en - sec"; ?> gedaan over kamer 2</p>
 

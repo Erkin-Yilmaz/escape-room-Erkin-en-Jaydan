@@ -9,7 +9,7 @@ require_once '../dbcon.php';
 // Handle deletion
 if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
-    $stmt = $db_connection->prepare("DELETE FROM users WHERE id = ?");
+    $stmt = $dbConnection->prepare("DELETE FROM users WHERE id = ?");
     $stmt->execute([$id]);
     echo "<p style='color:green;'>Gebruiker verwijderd.</p>";
 }
@@ -20,13 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_id'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $role = $_POST['role'];
-    $stmt = $db_connection->prepare("UPDATE users SET name=?, email=?, role=? WHERE id=?");
+    $stmt = $dbConnection->prepare("UPDATE users SET name=?, email=?, role=? WHERE id=?");
     $stmt->execute([$name, $email, $role, $id]);
     echo "<p style='color:green;'>Gebruiker bijgewerkt.</p>";
 }
 
 // Fetch all users
-$stmt = $db_connection->query("SELECT * FROM users ORDER BY role, name");
+$stmt = $dbConnection->query("SELECT * FROM users ORDER BY role, name");
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 

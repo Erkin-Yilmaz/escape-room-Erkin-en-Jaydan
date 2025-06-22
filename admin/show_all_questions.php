@@ -9,7 +9,7 @@ require_once '../dbcon.php';
 // Handle deletion
 if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
-    $stmt = $db_connection->prepare("DELETE FROM questions WHERE id = ?");
+    $stmt = $dbConnection->prepare("DELETE FROM questions WHERE id = ?");
     $stmt->execute([$id]);
     echo "<p style='color:green;'>Vraag verwijderd.</p>";
 }
@@ -21,13 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_id'])) {
     $answer = $_POST['answer'];
     $hint = $_POST['hint'];
     $roomId = $_POST['roomId'];
-    $stmt = $db_connection->prepare("UPDATE questions SET question=?, answer=?, hint=?, roomId=? WHERE id=?");
+    $stmt = $dbConnection->prepare("UPDATE questions SET question=?, answer=?, hint=?, roomId=? WHERE id=?");
     $stmt->execute([$question, $answer, $hint, $roomId, $id]);
     echo "<p style='color:green;'>Vraag bijgewerkt.</p>";
 }
 
 // Fetch all questions
-$stmt = $db_connection->query("SELECT * FROM questions ORDER BY roomId, id");
+$stmt = $dbConnection->query("SELECT * FROM questions ORDER BY roomId, id");
 $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -81,7 +81,7 @@ $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endforeach; ?>
     </table> 
     <br>
-<button type="button" onclick="window.history.back();">Ga terug</button>
+    <a href="dashboard.php"><button>Terug naar dashboard</button></a>
 
 </body>
 

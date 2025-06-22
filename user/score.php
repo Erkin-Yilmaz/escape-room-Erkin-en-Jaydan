@@ -2,7 +2,7 @@
 require_once '../dbcon.php';
 
 // Fetch all users and their scores
-$stmt = $db_connection->query("SELECT name, room1_time, room2_time FROM users ORDER BY name");
+$stmt = $dbConnection->query("SELECT name, room1_time, room2_time FROM users ORDER BY name");
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 

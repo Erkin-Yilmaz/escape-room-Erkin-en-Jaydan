@@ -16,7 +16,7 @@ $password = $_POST['password'] ?? null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $email && $password) {
     $sql = "SELECT * FROM users WHERE email = ?";
-    $stmt = $db_connection->prepare($sql);
+    $stmt = $dbConnection->prepare($sql);
     $stmt->execute([$email]);
     $user = $stmt->fetch();
 

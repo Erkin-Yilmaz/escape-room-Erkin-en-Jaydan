@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($question && $answer && $roomId) {
         $sql = "INSERT INTO questions (question, answer, hint, roomId) VALUES (?, ?, ?, ?)";
-        $stmt = $db_connection->prepare($sql);
+        $stmt = $dbConnection->prepare($sql);
         $stmt->execute([$question, $answer, $hint, $roomId]);
         echo "<p style='color:green;'>Vraag toegevoegd!</p>";
     } else {

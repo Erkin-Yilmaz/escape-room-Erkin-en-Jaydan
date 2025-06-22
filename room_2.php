@@ -1,8 +1,23 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (isset($_GET['room1_time'])) {
+    $_SESSION['room1_time'] = intval($_GET['room1_time']);
+    require_once './dbcon.php';
+    if (isset($_SESSION['userId'])) {
+        $stmt = $dbConnection->prepare("UPDATE users SET room1_time = ? WHERE id = ?");
+        $stmt->execute([$_SESSION['room1_time'], $_SESSION['userId']]);
+    }
+}
+?>
+
+
+<?php
 require_once('./dbcon.php');
 
 try {
-  $stmt = $db_connection->query("SELECT * FROM questions WHERE roomId = 2");
+  $stmt = $dbConnection->query("SELECT * FROM questions WHERE roomId = 2");
   $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
   die("Databasefout: " . $e->getMessage());
@@ -63,14 +78,3 @@ try {
 
 </html>
 
-<?php
-session_start();
-if (isset($_GET['room1_time'])) {
-    $_SESSION['room1_time'] = intval($_GET['room1_time']);
-    require_once './dbcon.php';
-    if (isset($_SESSION['userId'])) {
-        $stmt = $db_connection->prepare("UPDATE users SET room1_time = ? WHERE id = ?");
-        $stmt->execute([$_SESSION['room1_time'], $_SESSION['userId']]);
-    }
-}
-?>

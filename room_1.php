@@ -2,7 +2,7 @@
 require_once('./dbcon.php');
 
 try {
-  $stmt = $db_connection->query("SELECT * FROM questions WHERE roomId = 1");
+  $stmt = $dbConnection->query("SELECT * FROM questions WHERE roomId = 1");
   $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
   die("Databasefout: " . $e->getMessage());
