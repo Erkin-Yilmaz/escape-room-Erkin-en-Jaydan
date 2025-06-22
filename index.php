@@ -20,17 +20,20 @@ if (!isset($_SESSION['userId'])) {
 
 <body>
 
+  <form action="user/logout.php" method="post" style="display:inline;">
+    <button type="submit">Uitloggen</button>
+  </form> 
   <h1>Welkom</h1>
   <p>Je probeerde even geleden "gratis" video games te downloaden via websites die je online hebt gevonden.</p>
   <p>Sindst dien doet je computer raar en heb je geen toegang meer tot je bestanden.</p>
   <p>Je hebt een melding gekregen dat je een escape room moet spelen om weer toegang te krijgen tot je bestanden.</p>
   
-
-
+  <button><a href="room_1.php">start escape room</a></button>
+ 
 
   <!-- De button hieronder is alleen voor testdoeleinden bij het opstarten van het project.
      Deze pagina is bedoeld voor de uitleg van jullie escape room. -->
-  <button><a href="room_1.php">start escape room</a></button>
+
 
 </body>
 
