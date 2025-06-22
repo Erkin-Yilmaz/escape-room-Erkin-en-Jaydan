@@ -57,15 +57,13 @@ function checkAnswer() {
       closeModal();
 
       // Check if all are answered
-      if (answeredCorrectly.size === totalQuestions) {
-        // Check what room you're in
-        if (window.location.href.includes("room_1.php")) {
-          // Redirect to room 2 and reset timer
-          window.location.href = "room_2.php";
-        } else if (window.location.href.includes("room_2.php")) {
-          // Redirect to win screen
-          window.location.href = "WinVerlies/win.php"; // Zorg ervoor dat dit bestand bestaat of pas het pad aan naar een bestaand bestand
-        }
+    if (answeredCorrectly.size === totalQuestions) {
+    if (window.location.href.includes("room_1.php")) {
+        window.location.href = "room_2.php?room1_time=" + elapsedTime;
+    } else if (window.location.href.includes("room_2.php")) {
+        window.location.href = "WinVerlies/win.php?room2_time=" + elapsedTime;
+    }
+
       }
     }, 1000);
   } else {
@@ -74,8 +72,11 @@ function checkAnswer() {
   }
 }
 
+let elapsedTime = 0; // seconds
+
 function startCountdown(durationInMinutes, onTimeUpCallback) {
   let time = durationInMinutes * 60;
+  elapsedTime = 0;
   let countdown = setInterval(function () {
     let seconds = time % 60;
     let minutes = Math.floor(time / 60);
@@ -89,11 +90,12 @@ function startCountdown(durationInMinutes, onTimeUpCallback) {
     }
 
     time--;
+    elapsedTime++; // count up
 
     if (time < 0) {
       clearInterval(countdown);
       if (typeof onTimeUpCallback === "function") {
-        onTimeUpCallback(); // Bijvoorbeeld redirect naar verliespagina
+        onTimeUpCallback();
       }
     }
   }, 1000);

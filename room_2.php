@@ -62,3 +62,15 @@ try {
 </body>
 
 </html>
+
+<?php
+session_start();
+if (isset($_GET['room1_time'])) {
+    $_SESSION['room1_time'] = intval($_GET['room1_time']);
+    require_once './dbcon.php';
+    if (isset($_SESSION['userId'])) {
+        $stmt = $db_connection->prepare("UPDATE users SET room1_time = ? WHERE id = ?");
+        $stmt->execute([$_SESSION['room1_time'], $_SESSION['userId']]);
+    }
+}
+?>

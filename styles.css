@@ -111,3 +111,8 @@ button {
   padding: 5px 10px;
   cursor: pointer;
 }
+
+
+   table { margin: 0 auto; border-collapse: collapse; border-radius: 12px; }
+        th, td { border: 1px solid #05f81e; padding: 8px; border-radius: 10px; }
+        form { display: inline; }

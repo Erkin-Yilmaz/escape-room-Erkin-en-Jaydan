@@ -37,8 +37,8 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Alle spelers</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
-        table { margin: 0 auto; border-collapse: collapse; }
-        th, td { border: 1px solid #05f81e; padding: 8px; }
+        table { margin: 0 auto; border-collapse: collapse; border-radius: 12px; }
+        th, td { border: 1px solid #05f81e; padding: 8px; border-radius: 10px; }
         form { display: inline; }
     </style>
 </head>
@@ -49,6 +49,8 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <th>Naam</th>
             <th>Email</th>
             <th>Rol</th>
+            <th>Score kamer 1</th>
+            <th>Score kamer 2</th>
             <th>Acties</th>
         </tr>
         <?php foreach ($users as $user): ?>
@@ -64,6 +66,16 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </select>
                         </td>
                         <td>
+                            <?= isset($user['room1_time']) && $user['room1_time'] !== null
+                                ? floor($user['room1_time']/60) . "m " . ($user['room1_time']%60) . "s"
+                                : "-" ?>
+                        </td>
+                        <td>
+                            <?= isset($user['room2_time']) && $user['room2_time'] !== null
+                                ? floor($user['room2_time']/60) . "m " . ($user['room2_time']%60) . "s"
+                                : "-" ?>
+                        </td>
+                        <td>
                             <input type="hidden" name="edit_id" value="<?= $user['id'] ?>">
                             <button type="submit">Opslaan</button>
                             <a href="show_all_teams.php">Annuleer</a>
@@ -74,6 +86,16 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= htmlspecialchars($user['email']) ?></td>
                     <td><?= htmlspecialchars($user['role']) ?></td>
                     <td>
+                        <?= isset($user['room1_time']) && $user['room1_time'] !== null
+                            ? floor($user['room1_time']/60) . "m " . ($user['room1_time']%60) . "s"
+                            : "-" ?>
+                    </td>
+                    <td>
+                        <?= isset($user['room2_time']) && $user['room2_time'] !== null
+                            ? floor($user['room2_time']/60) . "m " . ($user['room2_time']%60) . "s"
+                            : "-" ?>
+                    </td>
+                    <td>
                         <a href="show_all_teams.php?edit=<?= $user['id'] ?>">Bewerk</a>
                         <a href="show_all_teams.php?delete=<?= $user['id'] ?>" onclick="return confirm('Weet je zeker dat je deze gebruiker wilt verwijderen?');">Verwijder</a>
                     </td>
@@ -82,9 +104,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endforeach; ?>
     </table>
 
-
     <br>
-
     <a href="dashboard.php"><button>Terug naar dashboard</button></a>
 
     <style>
@@ -92,15 +112,16 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         color: #05f81e;
         text-decoration: none;
      }
-
-        button {
-            background-color: #05f81e;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 10px; 
-        }
+     button {
+        background-color: #05f81e;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 10px; 
+     }
     </style>
 </body>
 </html>
+
+
